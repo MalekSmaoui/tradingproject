@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.joda.time.DateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +36,7 @@ int id;
 	Float SL;
 	Float TP;
 	Float lot;
+	String date;
 	String state;
 	Float capital;
 	Float percentage;

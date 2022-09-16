@@ -1,5 +1,7 @@
 package tn.esprit.spring.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ IUserService userService;
 		String username= SecurityContextHolder.getContext().getAuthentication().getName();
         User u= userService.retrieveUserByUsername(username);
         o.setCreator(u);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now(); 
+        o.setDate(dtf.format(now));
 		orderRepository.save(o);
 		
 	}
@@ -67,6 +72,7 @@ IUserService userService;
 		o.setState("approved");	
 		o.setCapital(or.getCapital());
 		o.setPercentage(or.getPercentage());
+		o.setLot(or.getLot());
 	    o.setValidator(u);
 	    orderRepository.save(o);
 	   
