@@ -67,6 +67,18 @@ public class User implements Serializable , UserDetails {
 	@JsonIgnore
 
 	@OneToMany(cascade = CascadeType.PERSIST, fetch
+	= FetchType.EAGER, mappedBy = "creator")
+	private Set<Order> orders;
+	
+	@JsonIgnore
+
+	@OneToMany(cascade = CascadeType.PERSIST, fetch
+	= FetchType.EAGER, mappedBy = "validator")
+	private Set<Order> orderss;
+	
+	@JsonIgnore
+
+	@OneToMany(cascade = CascadeType.PERSIST, fetch
 	= FetchType.EAGER, mappedBy = "user")
 	private Set<Event> events;
 	

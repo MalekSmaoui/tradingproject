@@ -1,7 +1,7 @@
 package tn.esprit.spring.entity;
 
 public enum Role {
-	ADMINISTRATOR,CLIENT
+	ADMINISTRATOR,VALIDATOR,TA,FA
 
 }
 //

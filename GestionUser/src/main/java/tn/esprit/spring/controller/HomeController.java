@@ -43,14 +43,18 @@ import tn.esprit.spring.entity.Commentaire;
 import tn.esprit.spring.entity.Documentation;
 import tn.esprit.spring.entity.Event;
 import tn.esprit.spring.entity.Likee;
+import tn.esprit.spring.entity.Order;
 import tn.esprit.spring.entity.ResponseData;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.recommendation;
 import tn.esprit.spring.services.BestPracticeService;
 import tn.esprit.spring.services.CommentaireService;
 import tn.esprit.spring.services.DocumentationService;
 import tn.esprit.spring.services.EmailService;
 import tn.esprit.spring.services.EventService;
 import tn.esprit.spring.services.IUserService;
+import tn.esprit.spring.services.OrderService;
+import tn.esprit.spring.services.RecommendationService;
 
 
 @RestController
@@ -66,6 +70,10 @@ BestPracticeService bestPracticeService;
 EventService eventService;
 @Autowired
 CommentaireService commentaireService;
+@Autowired
+OrderService orderService;
+@Autowired
+RecommendationService recommendationService;
 @Autowired 
 DocumentationService documentationService;
 //EmailValidator emailValidator;
@@ -272,7 +280,79 @@ public void editDocumentation(@PathVariable int idd,@RequestBody Documentation d
 	documentationService.EditDocumentation(d, idd);
 }
 
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
 
+@PostMapping("/addorder")
+public void addOrder(@RequestBody Order o) {
+	orderService.addOrder(o);
+}
+
+@PutMapping("/cancelorder/{ido}")
+public void cancelOrder(@PathVariable int ido){
+	orderService.cancelOrder(ido);
+	}
+
+
+@PutMapping("/approveorder/{ido}")
+public void approveOrder(@PathVariable int ido){
+	orderService.approveOrder(ido);
+	}
+
+@DeleteMapping("/deleteorder/{ido}")
+public void deleteOrder(@PathVariable int ido){
+	orderService.deleteOrder(ido);	
+} 
+
+@GetMapping("/myorders/{idu}")
+public List<Order> myorders(@PathVariable int idu){
+	return orderService.myOrders(idu);
+	}
+
+@GetMapping("/order/{idorder}")
+public Order order(@PathVariable int idorder) {
+	return orderService.visitOrder(idorder);
+}
+
+@GetMapping("/orders")
+public List<Order> orders(){
+	return orderService.Orders();
+	}
+
+@GetMapping("/searchorder/{keyword}")
+public List<Order> searchOrder (@PathVariable String keyword)
+{
+	return orderService.search(keyword);
+}
+
+@GetMapping("/searchorder2/{id}/{keyword}")
+public List<Order> searchOrder (@PathVariable int id,@PathVariable String keyword)
+{
+	return orderService.search2(id,keyword);
+}
+//////////////////////////////////
+
+@PostMapping("/addrecommendation")
+public void addRecommendation(@RequestBody recommendation r) {
+	recommendationService.addRecommendation(r);
+}
+
+@DeleteMapping("/deleterecommendation/{idr}")
+public void deleteRecommendation(@PathVariable int idr){
+	recommendationService.deleteRecommendation(idr);	
+}
+
+@GetMapping("/recommendations")
+public List<recommendation> recommendations(){
+	return recommendationService.Recommendations();
+	}
+
+@GetMapping("/searchrecom/{keyword}")
+public List<recommendation> search (@PathVariable String keyword)
+{
+	return recommendationService.search(keyword);
+}
 
 }
 

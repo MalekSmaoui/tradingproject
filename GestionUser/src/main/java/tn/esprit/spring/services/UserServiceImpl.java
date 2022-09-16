@@ -128,7 +128,7 @@ public class UserServiceImpl implements IUserService{
 	
 		user.setPassword(encoder.encode(password));
 		
-		user.setRole(Role.CLIENT);
+		user.setRole(Role.VALIDATOR);
 		
 		
 		ur.save(user);
@@ -191,7 +191,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public List<User> findAllClient() {
 		
-		return ur.findByRole(Role.CLIENT);
+		return ur.findByRole(Role.VALIDATOR);
 	}
 
 
