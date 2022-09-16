@@ -292,28 +292,28 @@ public void editDocumentation(@PathVariable int idd,@RequestBody Documentation d
 /////////////////////////////
 /////////////////////////////
 
-@PostMapping("/addorder")
+@PostMapping("/add-order")
 public void addOrder(@RequestBody Order o) {
 	orderService.addOrder(o);
 }
 
-@PutMapping("/cancelorder/{ido}")
+@PutMapping("/cancel-order/{ido}")
 public void cancelOrder(@PathVariable int ido){
 	orderService.cancelOrder(ido);
 	}
 
 
-@PutMapping("/approveorder/{ido}")
+@PutMapping("/approve-order/{ido}")
 public void approveOrder(@PathVariable int ido,@RequestBody Order o){
 	orderService.approveOrder(o,ido);
 	}
 
-@DeleteMapping("/deleteorder/{ido}")
+@DeleteMapping("/delete-order/{ido}")
 public void deleteOrder(@PathVariable int ido){
 	orderService.deleteOrder(ido);	
 } 
 
-@GetMapping("/myorders/{idu}")
+@GetMapping("/my-orders/{idu}")
 public List<Order> myorders(@PathVariable int idu){
 	return orderService.myOrders(idu);
 	}
@@ -328,25 +328,25 @@ public List<Order> orders(){
 	return orderService.Orders();
 	}
 
-@GetMapping("/searchorder/{keyword}")
+@GetMapping("/search-orders/{keyword}")
 public List<Order> searchOrder (@PathVariable String keyword)
 {
 	return orderService.search(keyword);
 }
 
-@GetMapping("/searchorder2/{id}/{keyword}")
+@GetMapping("/search-my-order/{id}/{keyword}")
 public List<Order> searchOrder (@PathVariable int id,@PathVariable String keyword)
 {
 	return orderService.search2(id,keyword);
 }
 //////////////////////////////////
 
-@PostMapping("/addrecommendation")
+@PostMapping("/add-recommendation")
 public void addRecommendation(@RequestBody recommendation r) {
 	recommendationService.addRecommendation(r);
 }
 
-@DeleteMapping("/deleterecommendation/{idr}")
+@DeleteMapping("/delete-recommendation/{idr}")
 public void deleteRecommendation(@PathVariable int idr){
 	recommendationService.deleteRecommendation(idr);	
 }
@@ -356,19 +356,19 @@ public List<recommendation> recommendations(){
 	return recommendationService.Recommendations();
 	}
 
-@GetMapping("/searchrecom/{keyword}")
+@GetMapping("/search-recommendation/{keyword}")
 public List<recommendation> searchrecom (@PathVariable String keyword)
 {
 	return recommendationService.search(keyword);
 }
 //////////////////////////////////////////
 
-@PostMapping("/addspread")
+@PostMapping("/add-spread")
 public void addSpread(@RequestBody Spread s) {
 	spreadService.addSpread(s);
 }
 
-@DeleteMapping("/deletespread/{ids}")
+@DeleteMapping("/delete-spread/{ids}")
 public void deleteSpread(@PathVariable int ids){
 	spreadService.deleteSpread(ids);	
 }
@@ -378,7 +378,7 @@ public List<Spread> Spreads(){
 	return spreadService.Spreads();
 	}
 
-@GetMapping("/searchrspread/{keyword}")
+@GetMapping("/searchr-spreads/{keyword}")
 public List<Spread> searchspread (@PathVariable String keyword)
 {
 	return spreadService.search(keyword);
@@ -386,12 +386,12 @@ public List<Spread> searchspread (@PathVariable String keyword)
 
 ///////////////////////////////
 
-@PostMapping("/addcurrencystate")
+@PostMapping("/add-currencystate")
 public void addCurrencyState(@RequestBody currencyState c) {
 	currencyStateService.addCurrencyState(c);
 }
 
-@DeleteMapping("/deletecurrencystate/{idc}")
+@DeleteMapping("/delete-currencystate/{idc}")
 public void deleteCurrencyState(@PathVariable int idc){
 	currencyStateService.deleteCurrencyState(idc);	
 }
@@ -401,7 +401,7 @@ public List<currencyState> CurrencyStates(){
 	return currencyStateService.CurrencyStates();
 	}
 
-@GetMapping("/searchrcurrencystate/{keyword}")
+@GetMapping("/searchr-currencystate/{keyword}")
 public List<currencyState> searchcurr (@PathVariable String keyword)
 {
 	return currencyStateService.search(keyword);
