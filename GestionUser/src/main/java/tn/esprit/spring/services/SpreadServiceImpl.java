@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.BestPractice;
+import tn.esprit.spring.entity.Order;
 import tn.esprit.spring.entity.Spread;
 import tn.esprit.spring.entity.recommendation;
 import tn.esprit.spring.repositories.BestPracticeRepsoitory;
@@ -21,10 +22,20 @@ SpreadRepository spreadRepository;
 
 
 	@Override
-	public void addSpread(Spread s) {
+	public void addSpread(Spread s,String currencyPair) {
 
-		spreadRepository.save(s);
+		if(spreadRepository.existsCarLikeCustomQuery(currencyPair))
+		{
+			Spread r= spreadRepository.searchh(currencyPair);
+			r.setSpread(s.getSpread());
+		}
+			
+		else
+			{
+				spreadRepository.save(s);
+			}
 		
+		//.orElse(null);
 	}
 
 	

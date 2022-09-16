@@ -363,9 +363,9 @@ public List<recommendation> searchrecom (@PathVariable String keyword)
 }
 //////////////////////////////////////////
 
-@PostMapping("/add-spread")
-public void addSpread(@RequestBody Spread s) {
-	spreadService.addSpread(s);
+@PostMapping("/add-spread/{currencyPair}")
+public void addSpread(@RequestBody Spread s,@PathVariable String currencyPair) {
+	spreadService.addSpread(s,currencyPair);
 }
 
 @DeleteMapping("/delete-spread/{ids}")
