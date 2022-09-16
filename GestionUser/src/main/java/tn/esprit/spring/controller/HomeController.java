@@ -45,16 +45,20 @@ import tn.esprit.spring.entity.Event;
 import tn.esprit.spring.entity.Likee;
 import tn.esprit.spring.entity.Order;
 import tn.esprit.spring.entity.ResponseData;
+import tn.esprit.spring.entity.Spread;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.currencyState;
 import tn.esprit.spring.entity.recommendation;
 import tn.esprit.spring.services.BestPracticeService;
 import tn.esprit.spring.services.CommentaireService;
+import tn.esprit.spring.services.CurrencyStateService;
 import tn.esprit.spring.services.DocumentationService;
 import tn.esprit.spring.services.EmailService;
 import tn.esprit.spring.services.EventService;
 import tn.esprit.spring.services.IUserService;
 import tn.esprit.spring.services.OrderService;
 import tn.esprit.spring.services.RecommendationService;
+import tn.esprit.spring.services.SpreadService;
 
 
 @RestController
@@ -73,9 +77,13 @@ CommentaireService commentaireService;
 @Autowired
 OrderService orderService;
 @Autowired
+SpreadService spreadService;
+@Autowired
 RecommendationService recommendationService;
 @Autowired 
 DocumentationService documentationService;
+@Autowired 
+CurrencyStateService currencyStateService;
 //EmailValidator emailValidator;
 
 //@PostMapping("/registration")
@@ -296,8 +304,8 @@ public void cancelOrder(@PathVariable int ido){
 
 
 @PutMapping("/approveorder/{ido}")
-public void approveOrder(@PathVariable int ido){
-	orderService.approveOrder(ido);
+public void approveOrder(@PathVariable int ido,@RequestBody Order o){
+	orderService.approveOrder(o,ido);
 	}
 
 @DeleteMapping("/deleteorder/{ido}")
@@ -349,10 +357,54 @@ public List<recommendation> recommendations(){
 	}
 
 @GetMapping("/searchrecom/{keyword}")
-public List<recommendation> search (@PathVariable String keyword)
+public List<recommendation> searchrecom (@PathVariable String keyword)
 {
 	return recommendationService.search(keyword);
 }
+//////////////////////////////////////////
 
+@PostMapping("/addspread")
+public void addSpread(@RequestBody Spread s) {
+	spreadService.addSpread(s);
+}
+
+@DeleteMapping("/deletespread/{ids}")
+public void deleteSpread(@PathVariable int ids){
+	spreadService.deleteSpread(ids);	
+}
+
+@GetMapping("/spreads")
+public List<Spread> Spreads(){
+	return spreadService.Spreads();
+	}
+
+@GetMapping("/searchrspread/{keyword}")
+public List<Spread> searchspread (@PathVariable String keyword)
+{
+	return spreadService.search(keyword);
+}
+
+///////////////////////////////
+
+@PostMapping("/addcurrencystate")
+public void addCurrencyState(@RequestBody currencyState c) {
+	currencyStateService.addCurrencyState(c);
+}
+
+@DeleteMapping("/deletecurrencystate/{idc}")
+public void deleteCurrencyState(@PathVariable int idc){
+	currencyStateService.deleteCurrencyState(idc);	
+}
+
+@GetMapping("/currencystates")
+public List<currencyState> CurrencyStates(){
+	return currencyStateService.CurrencyStates();
+	}
+
+@GetMapping("/searchrcurrencystate/{keyword}")
+public List<currencyState> searchcurr (@PathVariable String keyword)
+{
+	return currencyStateService.search(keyword);
+}
 }
 

@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import tn.esprit.spring.entity.BestPractice;
+import tn.esprit.spring.entity.Spread;
 
 
-public interface SpreadRepository extends JpaRepository<BestPractice, Integer> {
-	 @Query("SELECT b FROM BestPractice b WHERE b.titre LIKE %?1%"
-	            + " OR b.description LIKE %?1%"
+public interface SpreadRepository extends JpaRepository<Spread, Integer> {
+	 @Query("SELECT b FROM Spread b WHERE currencyPair LIKE %?1%"
 	            )
-	    public List<BestPractice> search(String keyword);
+	    public List<Spread> search(String keyword);
 }

@@ -9,7 +9,7 @@ import tn.esprit.spring.entity.Order;
 public interface OrderService {
 	public void addOrder(Order o);
 	public void cancelOrder(int ido);
-	public void approveOrder(int ido);
+	public void approveOrder(Order or,int ido);
 	public void deleteOrder(int ido);
 	public List<Order> myOrders(int id);
 	public Order visitOrder(int idorder);

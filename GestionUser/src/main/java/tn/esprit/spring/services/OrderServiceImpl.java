@@ -47,7 +47,7 @@ IUserService userService;
 
 	@Override
 	public void deleteOrder(int ido) {
-		orderRepository.deleteById(ido);
+		orderRepository.deleteorder(ido);
 		
 	}
 	
@@ -59,12 +59,14 @@ IUserService userService;
 	}
 	
 	@Override
-	public void approveOrder(int ido) {
+	public void approveOrder(Order or,int ido) {
 		
 		String username= SecurityContextHolder.getContext().getAuthentication().getName();
 	    User u= userService.retrieveUserByUsername(username);
 		Order o= orderRepository.findById(ido).orElse(null);
 		o.setState("approved");	
+		o.setCapital(or.getCapital());
+		o.setPercentage(or.getPercentage());
 	    o.setValidator(u);
 	    orderRepository.save(o);
 	   

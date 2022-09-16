@@ -66,13 +66,13 @@ public class User implements Serializable , UserDetails {
 	
 	@JsonIgnore
 
-	@OneToMany(cascade = CascadeType.PERSIST, fetch
+	@OneToMany(cascade = CascadeType.ALL, fetch
 	= FetchType.EAGER, mappedBy = "creator")
 	private Set<Order> orders;
 	
 	@JsonIgnore
 
-	@OneToMany(cascade = CascadeType.PERSIST, fetch
+	@OneToMany(cascade = CascadeType.ALL, fetch
 	= FetchType.EAGER, mappedBy = "validator")
 	private Set<Order> orderss;
 	
