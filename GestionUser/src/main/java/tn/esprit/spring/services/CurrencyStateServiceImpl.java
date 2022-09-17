@@ -23,10 +23,18 @@ CurrencyStateRepository currencyStateRepository;
 
 
 	@Override
-	public void addCurrencyState(currencyState c) {
+	public void addCurrencyState(currencyState c,String currency) {
 
+		if(currencyStateRepository.existsCarLikeCustomQuery(currency))
+		{
+			currencyState r= currencyStateRepository.searchh(currency);
+			r.setState(c.getState());
+			currencyStateRepository.save(r);
+		}
+		else
+		{
 		currencyStateRepository.save(c);
-		
+		}
 	}
 
 	

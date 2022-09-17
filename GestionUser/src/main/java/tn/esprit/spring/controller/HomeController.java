@@ -386,9 +386,9 @@ public List<Spread> searchspread (@PathVariable String keyword)
 
 ///////////////////////////////
 
-@PostMapping("/add-currencystate")
-public void addCurrencyState(@RequestBody currencyState c) {
-	currencyStateService.addCurrencyState(c);
+@PostMapping("/add-currencystate/{currency}")
+public void addCurrencyState(@RequestBody currencyState c,@PathVariable String currency) {
+	currencyStateService.addCurrencyState(c,currency);
 }
 
 @DeleteMapping("/delete-currencystate/{idc}")

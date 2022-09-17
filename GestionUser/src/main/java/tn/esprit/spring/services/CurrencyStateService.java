@@ -9,7 +9,7 @@ import tn.esprit.spring.entity.recommendation;
 
 
 public interface CurrencyStateService {
-	public void addCurrencyState(currencyState c);
+	public void addCurrencyState(currencyState c,String currency);
 	public void deleteCurrencyState(int idc);
 	public List<currencyState> CurrencyStates();
 	public List<currencyState> search(String keyword);

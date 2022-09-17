@@ -28,10 +28,12 @@ SpreadRepository spreadRepository;
 		{
 			Spread r= spreadRepository.searchh(currencyPair);
 			r.setSpread(s.getSpread());
+			spreadRepository.save(r);
 		}
 			
 		else
 			{
+				
 				spreadRepository.save(s);
 			}
 		
