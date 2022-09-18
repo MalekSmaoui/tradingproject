@@ -124,11 +124,11 @@ public class UserServiceImpl implements IUserService{
 	
 
 
-		    String password = gen.generatePassword(10, rules);
+		    //String password = gen.generatePassword(10, rules);
 	
-		user.setPassword(encoder.encode(password));
+		user.setPassword(encoder.encode(user.getPassword()));
 		
-		user.setRole(Role.VALIDATOR);
+	//	user.setRole(Role.VALIDATOR);
 		
 		
 		ur.save(user);
@@ -136,11 +136,11 @@ public class UserServiceImpl implements IUserService{
 		
 		String subject = "Compte";
 		
-		String message = "Bonjour "+ user.getFullName()+ "\n"
+		/*String message = "Bonjour "+ user.getFullName()+ "\n"
 				+ "Votre username = "+ user.getUsername() +"\n"
 						+ "Mot de passe = " + password;
 		
-		sendMail.send(user.getEmailUser(), subject, message);
+		sendMail.send(user.getEmailUser(), subject, message);*/
 		return ResponseEntity.ok(new ResponseMessage("user added Succefully"));
 	}
 	
