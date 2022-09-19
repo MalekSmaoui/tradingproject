@@ -22,5 +22,6 @@ public class recommendation {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 int id;
 	String currencyPair;
+	String date;
 	String comment;
 }

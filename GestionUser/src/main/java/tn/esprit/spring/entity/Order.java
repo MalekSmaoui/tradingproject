@@ -41,11 +41,11 @@ int id;
 	Float capital;
 	Float percentage;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	User creator;
 	
-	@JsonIgnore
+
 	@ManyToOne
 	User validator;
 

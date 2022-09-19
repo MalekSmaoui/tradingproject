@@ -1,5 +1,7 @@
 package tn.esprit.spring.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ RecommendationRepository recommendationRepository;
 	@Override
 	public void addRecommendation(recommendation r) {
 
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now(); 
+        r.setDate(dtf.format(now));
 		recommendationRepository.save(r);
 		
 	}

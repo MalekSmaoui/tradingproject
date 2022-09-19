@@ -16,6 +16,7 @@ import tn.esprit.spring.entity.User;
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 	 @Query("SELECT b FROM Order b WHERE b.orderType LIKE %?1%"
 			    + " OR b.currencyPair LIKE %?1%"
+			 + " OR b.id LIKE %?1%"
 	            )
 	    public List<Order> search(String keyword);
 	 	
@@ -24,6 +25,8 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 		 public List<Order> findAllByCreatorId(@Param("id") int id);
 	 
 	 @Query("SELECT b FROM Order b WHERE b.orderType = :keyword"
+			    + " OR b.currencyPair LIKE %:keyword%"
+			 + " OR b.id LIKE %:keyword%"
 			    + " AND b.creator.idUser = :id"
 	            )
 	    public List<Order> search2(@Param("id") int id,@Param("keyword") String keyword);
